@@ -7,9 +7,31 @@
 </head>
 <body>
 
-    <header>
-        <h1>DeskThings</h1>
-    </header>
+<header>
+    <div>
+        <a href="/">DeskThings</a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/new">New</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search products..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div>
+        <a href="/login">Account</a>
+        <a href="/cart">Cart (0)</a>
+    </div>
+</header>
 
     <main>
         <p>Welcome to DeskThings.</p>
