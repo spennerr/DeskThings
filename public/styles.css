@@ -441,3 +441,56 @@ header {
     color: var(--color-text);
     text-decoration: underline;
 }
+
+/* =========================
+   Responsive (mobile-first)
+   ========================= */
+
+/* Default mobile layouts */
+.category-list,
+.product-grid {
+    grid-template-columns: 1fr;
+}
+
+.hero h2 {
+    font-size: 30px;
+}
+
+.hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-actions .btn {
+    width: 100%;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+
+    .category-list,
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-actions {
+        flex-direction: row;
+    }
+
+    .hero-actions .btn {
+        width: auto;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+
+    .category-list,
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+}
