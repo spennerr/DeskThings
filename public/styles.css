@@ -1,0 +1,25 @@
+/* =========================
+   DeskThings Design Tokens
+   ========================= */
+
+:root {
+    /* Colors */
+    --color-bg: #f6f7f8;
+    --color-surface: #ffffff;
+    --color-text: #111111;
+    --color-muted: #6b7280;
+    --color-border: #e5e7eb;
+    --color-accent: #5be37d;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* Shadow */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.08);
+
+    /* Layout */
+    --container-width: 1100px;
+}
