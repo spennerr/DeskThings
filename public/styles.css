@@ -27,6 +27,7 @@
     --ease: 0.2s ease;
     --hover-lift: -2px;
     --hover-border: rgba(0, 0, 0, 0.2);
+    --focus-ring: rgba(91, 227, 125, 0.25);
 }
 
 /* =========================
@@ -215,6 +216,21 @@ header {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background: var(--color-surface);
+    color: var(--color-text);
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.search input::placeholder {
+    color: var(--color-muted);
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.search input:focus-visible {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--focus-ring);
 }
 
 .search button {
