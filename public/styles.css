@@ -22,6 +22,11 @@
 
     /* Layout */
     --container-width: 1100px;
+
+    /* Shared Interaction */
+    --ease: 0.2s ease;
+    --hover-lift: -2px;
+    --hover-border: rgba(0, 0, 0, 0.2);
 }
 
 /* =========================
@@ -69,6 +74,49 @@ ul {
 .container {
     width: min(var(--container-width), calc(100% - 32px));
     margin: 0 auto;
+}
+
+/* =========================
+   Interaction Utilities
+   ========================= */
+
+.u-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.u-hover-lift {
+    transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+}
+
+.u-hover-lift:hover {
+    transform: translateY(var(--hover-lift));
+    box-shadow: var(--shadow-md);
+    border-color: var(--hover-border);
+}
+
+.u-accent-strip {
+    position: relative;
+    overflow: hidden;
+}
+
+.u-accent-strip::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--ease);
+}
+
+.u-accent-strip:hover::after {
+    transform: scaleX(1);
 }
 
 /* =========================
@@ -225,15 +273,6 @@ header {
 .category-list a {
     display: block;
     padding: 14px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
     text-decoration: none;
     font-weight: 600;
-}
-
-.category-list a:hover {
-    border-color: rgba(0, 0, 0, 0.18);
-    text-decoration: none;
 }
