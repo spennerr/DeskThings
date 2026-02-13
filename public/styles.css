@@ -141,13 +141,29 @@ ul {
 }
 
 .btn:hover {
+    transform: translateY(var(--hover-lift));
+    box-shadow: var(--shadow-md);
+    border-color: var(--hover-border);
     text-decoration: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 4px var(--focus-ring);
+    border-color: var(--color-accent);
 }
 
 .btn--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
     color: #0b1a0f;
+}
+
+.btn--primary:hover {
+    border-color: var(--color-accent);
 }
 
 .btn--secondary {
