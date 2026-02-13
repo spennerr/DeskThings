@@ -276,25 +276,25 @@ header {
    ========================= */
 
 .hero {
-    padding: 56px 0;
+    padding: 32px 0 28px;
 }
 
 .hero h2 {
     margin: 0;
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
 }
 
 .hero p {
     margin: 12px 0 0;
     max-width: 60ch;
     color: var(--color-muted);
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .hero-actions {
-    margin-top: 20px;
+    margin-top: 18px;
     display: flex;
     gap: 12px;
 }
@@ -455,10 +455,6 @@ header {
     grid-template-columns: 1fr;
 }
 
-.hero h2 {
-    font-size: 30px;
-}
-
 .hero-actions {
     flex-direction: column;
     align-items: flex-start;
@@ -509,6 +505,18 @@ header {
         grid-template-columns: repeat(2, minmax(140px, 1fr));
         justify-content: end;
     }
+
+    .hero {
+        padding: 44px 0 40px;
+    }
+
+    .hero h2 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
 }
 
 /* Desktop */
@@ -519,7 +527,11 @@ header {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .hero h2 {
-        font-size: 40px;
+    .hero {
+        padding: 56px 0;
+    }
+
+    .hero p {
+        font-size: 18px;
     }
 }
