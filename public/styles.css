@@ -70,3 +70,83 @@ ul {
     width: min(var(--container-width), calc(100% - 32px));
     margin: 0 auto;
 }
+
+/* =========================
+   Header
+   ========================= */
+
+header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+}
+
+.logo a {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+}
+
+.nav-list {
+    display: flex;
+    gap: 14px;
+}
+
+.nav a {
+    color: var(--color-muted);
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.search {
+    margin-left: auto;
+    /* pushes search + actions to the right */
+}
+
+.search form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search input {
+    height: 36px;
+    width: 220px;
+    padding: 0 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+}
+
+.search button {
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.actions a {
+    color: var(--color-muted);
+    text-decoration: none;
+}
+
+.actions a:hover {
+    color: var(--color-text);
+}
