@@ -377,3 +377,67 @@ header {
 .product-card .btn {
     width: fit-content;
 }
+
+/* =========================
+   Footer
+   ========================= */
+
+.footer {
+    margin-top: 64px;
+    padding: 40px 0;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.footer-logo {
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+}
+
+.footer-tagline {
+    margin: 10px 0 14px;
+    color: var(--color-muted);
+    max-width: 38ch;
+}
+
+.footer-copy {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 20px;
+    justify-content: end;
+}
+
+.footer-col h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.footer-col a {
+    display: inline-block;
+    padding: 6px 0;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+}
