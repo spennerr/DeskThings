@@ -120,6 +120,47 @@ ul {
 }
 
 /* =========================
+   Button Utilities
+   ========================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+}
+
+.btn:hover {
+    text-decoration: none;
+}
+
+.btn--primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #0b1a0f;
+}
+
+.btn--secondary {
+    background: var(--color-surface);
+}
+
+.btn--small {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+/* =========================
    Header
    ========================= */
 
@@ -227,30 +268,6 @@ header {
     gap: 12px;
 }
 
-/* Buttons (foundation) */
-.hero-actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 42px;
-    padding: 0 16px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.hero-actions a:first-child {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: #0b1a0f;
-}
-
-.hero-actions a:hover {
-    text-decoration: none;
-}
-
 /* =========================
    Featured Categories
    ========================= */
@@ -264,6 +281,10 @@ header {
     font-size: 22px;
 }
 
+.featured-categories .section-header h2 {
+    margin: 0;
+}
+
 .category-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -275,4 +296,57 @@ header {
     padding: 14px 16px;
     text-decoration: none;
     font-weight: 600;
+}
+
+/* =========================
+   Bestsellers
+   ========================= */
+
+.bestsellers {
+    padding: 0 0 72px;
+}
+
+.section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.section-header a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.section-header a:hover {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.product-card {
+    padding: 16px;
+}
+
+.product-card h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.product-card p {
+    margin: 0 0 12px;
+    color: var(--color-muted);
+    font-weight: 600;
+}
+
+.product-card .btn {
+    width: fit-content;
 }
