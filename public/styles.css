@@ -395,7 +395,7 @@ header {
 
 .footer-inner {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 24px;
     align-items: start;
 }
@@ -421,9 +421,8 @@ header {
 
 .footer-nav {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    grid-template-columns: 1fr;
     gap: 20px;
-    justify-content: end;
 }
 
 .footer-col h3 {
@@ -499,6 +498,16 @@ header {
     .actions {
         order: 0;
         margin-left: 0;
+    }
+
+    /* Footer: two-column layout on tablet+ */
+    .footer-inner {
+        grid-template-columns: 1.2fr 1fr;
+    }
+
+    .footer-nav {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        justify-content: end;
     }
 }
 
