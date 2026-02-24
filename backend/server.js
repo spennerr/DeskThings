@@ -1,22 +1,28 @@
+require('dotenv').config();
 const express = require('express');
-const mysql = require('mysql2');
-const env = require('dotenv').config();
-
+const db = require('./db');
+const promisePool = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 3007;
+const PORT = process.env.PORT;
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+console.log(process.env.DB_PASSWORD); // Debugging line to check if DB_HOST is loaded
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.json({ message: 'Hello to you from the backend!' });
+});
 
-
+app.get('/products', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM products');
+        res.json({ message: 'Products retrieved successfully!', data: rows });
+    } catch (err) {
+        console.error('Error fetching products:', err);
+        res.status(500).json({ message: 'Error fetching products' });
+    }
+});
 
 
 
