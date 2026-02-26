@@ -24,7 +24,41 @@ app.get('/products', async (req, res) => {
     }
 });
 
+app.get('/products/:id', async (req, res) => {
+    const productId = req.params.id;
+    try {
+        const [row] = await db.query('SELECT * FROM products WHERE product_id = ?', [productId]);
+        if (row.length === 0) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.json({ message: 'Product retrieved successfully!', data: row[0] });
+    } catch (err) {
+        console.error('Error fetching product:', err);
+        res.status(500).json({ message: 'Error fetching product' });
+    }
+});
 
+app.post('/create-order', async (req, res) => {
+    const { customerId, addressId, paymentMethodId, totalSum, totalWeight, orderRows } = req.body;
+
+    console.log('Received order data:', req.body); // Debugging line to check incoming data
+
+    try {
+        const [result] = await db.query(
+            'INSERT INTO orders (customer_id, address_id, payment_method_id, order_date, total_sum, total_weight) VALUES (?, ?, ?, NOW(), ?, ?)',
+            [customerId, addressId, paymentMethodId, totalSum, totalWeight]
+        );
+        res.json({ message: 'Order created successfully!', orderId: result.insertId, customerId: customerId });
+    } catch (err) {
+        console.error('Error creating order:', err);
+        res.status(500).json({ message: 'Error creating order' });
+    }
+
+    /*  orderRows.forEach(row => {
+            try
+        });
+    */
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
