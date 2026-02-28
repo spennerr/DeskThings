@@ -104,6 +104,49 @@ app.post('/create-order', async (req, res) => {
     }
 });
 
+app.get('/:id/order-history', async (req, res) => {
+    const customerId = req.params.id;
+
+    conn = await db.getConnection();
+
+    try {
+        conn.beginTransaction();
+        const [orders] = await conn.query('SELECT * FROM orders JOIN order_rows ON orders.order_id = order_rows.order_id WHERE customer_id = ?', [customerId]);
+
+        console.log(`Fetched orders for customer ${customerId}:`, orders);
+
+        await conn.commit();
+        res.json({ message: 'Order history retrieved successfully!', data: orders });
+
+    } catch (err) {
+        console.error('Error fetching order history:', err);
+        await conn.rollback();
+        res.status(500).json({ message: 'Error fetching order history' });
+    } finally {
+        conn.release();
+    }
+});
+
+
+
+app.get('/search', async (req, res) => {
+    const searchQuery = req.query.q;
+    try {
+        const [rows] = await db.query('SELECT * FROM products WHERE name LIKE ?', [`%${searchQuery}%`]);
+        if (rows.length === 0) {
+            const err = new Error(`No products found searching for: ${searchQuery}`);
+            err.statusCode = 404;
+            throw err;
+        }
+        res.json({ message: 'Search results retrieved successfully!', data: rows });
+    } catch (err) {
+        console.error('Error performing search:', err);
+        const statusCode = err.statusCode || 500;
+        res.status(statusCode).json({ message: err.message || 'Error performing search' });
+    }
+});
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
