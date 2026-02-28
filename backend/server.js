@@ -4,9 +4,7 @@ const db = require('./db');
 const promisePool = require('./db');
 
 const app = express();
-const PORT = process.env.PORT;
-
-console.log(process.env.DB_PASSWORD); // Debugging line to check if DB_HOST is loaded
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -41,8 +39,6 @@ app.get('/products/:id', async (req, res) => {
 app.post('/create-order', async (req, res) => {
     const { customerId, addressId, paymentMethodId, totalSum, totalWeight, orderRows } = req.body;
 
-    console.log('Received order data:', req.body); // Debugging line to check incoming data
-
     let orderId = null; // Placeholder for order ID to be generated after inserting the order
 
     try {
@@ -51,10 +47,9 @@ app.post('/create-order', async (req, res) => {
             [customerId, addressId, paymentMethodId, totalSum, totalWeight]
         );
         orderId = orderResult.insertId; // Get the generated order ID
-        console.log('Order created successfully! Order ID:', orderId);
     } catch (err) {
         console.error('Error creating order:', err);
-        res.status(500).json({ message: 'Error creating order' });
+        return res.status(500).json({ message: 'Error creating order' });
     }
 
     orderRows.forEach(async row => {
@@ -75,7 +70,6 @@ app.post('/create-order', async (req, res) => {
                 'INSERT INTO order_rows (order_id, product_id, quantity, unit_price, unit_weight_kg) VALUES (?, ?, ?, ?, ?)',
                 [orderId, row.productId, row.quantity, row.price, row.weightKg]
             );
-            console.log('Order row created successfully! Row ID:', rowResult.insertId);
         } catch (err) {
             console.error('Error creating order row:', err);
             return res.status(500).json({ message: 'Error creating order row' });
