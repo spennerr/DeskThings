@@ -14,10 +14,14 @@ app.get('/', (req, res) => {
 const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 const categoriesRouter = require('./routes/categories');
+const userRouter = require('./routes/user');
 
 app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
 app.use('/categories', categoriesRouter);
+app.use('/', userRouter);
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

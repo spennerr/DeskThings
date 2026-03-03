@@ -11,6 +11,10 @@ const getAllProducts = async (req, res) => {
     }
 };
 
+const getProducts = async (req, res) => {
+
+};
+
 const getProductById = async (req, res) => {
     const productId = req.params.id;
     try {
@@ -66,6 +70,23 @@ const getProductsBySubcategory = async (req, res) => {
         console.error('Error fetching products by subcategory:', err);
         const statusCode = err.statusCode || 500;
         res.status(statusCode).json({ message: err.message || 'Error fetching products by subcategory' });
+    }
+};
+
+const getLowStockProducts = async (req, res) => {
+    const threshold = req.query.threshold || 10;
+    try {
+        const [rows] = await db.query('SELECT * FROM products WHERE stock_qty < ?', [threshold]);
+        if (rows.length === 0) {
+            const err = new Error(`No products found with stock quantity below ${threshold}`);
+            err.statusCode = 404;
+            throw err;
+        }
+        res.json({ message: 'Low stock products retrieved successfully!', data: rows });
+    } catch (err) {
+        console.error('Error fetching low stock products:', err);
+        const statusCode = err.statusCode || 500;
+        res.status(statusCode).json({ message: err.message || 'Error fetching low stock products' });
     }
 };
 
@@ -164,5 +185,6 @@ module.exports = {
     getProductsBySubcategory,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getLowStockProducts
 };

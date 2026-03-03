@@ -5,7 +5,7 @@ const router = express.Router();
 const ordersController = require('../controllers/ordersController');
 
 router.get('/', ordersController.getOrderHistory);
-router.get('/:id', ordersController.getOrderHistoryByCustomerId);
+router.get('/:id', ordersController.getOrderHistoryByUserId);
 
 router.post('/create-order', ordersController.createOrder);
 
