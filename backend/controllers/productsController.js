@@ -11,10 +11,6 @@ const getAllProducts = async (req, res) => {
     }
 };
 
-const getProducts = async (req, res) => {
-
-};
-
 const getProductById = async (req, res) => {
     const productId = req.params.id;
     try {
