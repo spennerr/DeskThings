@@ -48,6 +48,8 @@ const createOrder = async (req, res) => {
                 'INSERT INTO order_rows (order_id, product_id, quantity, unit_price, unit_weight_kg) VALUES (?, ?, ?, ?, ?)',
                 [orderId, row.productId, row.quantity, price, weightKg]
             );
+
+            await conn.query('UPDATE products SET stock_qty = stock_qty - ? WHERE product_id = ?', [row.quantity, row.productId]);
         }
 
         await conn.query('UPDATE orders SET total_sum = ?, total_weight = ? WHERE order_id = ?', [totalSum, totalWeight, orderId]);

@@ -80,7 +80,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-// used by users to view their own order history
 const getMyOrderHistory = async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {

@@ -21,8 +21,6 @@ app.use('/orders', ordersRouter);
 app.use('/categories', categoriesRouter);
 app.use('/', userRouter);
 
-
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

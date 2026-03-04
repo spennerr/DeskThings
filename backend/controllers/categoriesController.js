@@ -1,8 +1,5 @@
 const db = require('../db');
 
-// QUESTION: Is it professional to name like this? or better to be more specific and name like category/subcategory
-const CATEGORY_TYPES = ['main', 'sub'];
-
 const getAllCategories = async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM categories');
@@ -90,7 +87,6 @@ const deleteCategory = async (req, res) => {
         res.status(statusCode).json({ message: err.message || 'Error deleting category' });
     }
 };
-
 
 module.exports = {
     getAllCategories,
