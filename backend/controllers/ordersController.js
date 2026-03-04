@@ -31,7 +31,7 @@ const createOrder = async (req, res) => {
                 throw err;
             }
 
-            const [productRow] = await conn.query('SELECT base_price, weight_kg FROM products WHERE product_id = ?', [productId]);
+            const [productRow] = await conn.query('SELECT base_price, weight_kg, stock_qty FROM products WHERE product_id = ?', [productId]);
             if (productRow.length === 0) {
                 const err = new Error(`Product with ID ${row.productId} not found`);
                 err.statusCode = 404;
@@ -40,6 +40,7 @@ const createOrder = async (req, res) => {
 
             const price = productRow[0].base_price;
             const weightKg = productRow[0].weight_kg;
+            const stockQty = productRow[0].stock_qty;
 
             totalSum += price * row.quantity;
             totalWeight += weightKg * row.quantity;
@@ -48,7 +49,11 @@ const createOrder = async (req, res) => {
                 'INSERT INTO order_rows (order_id, product_id, quantity, unit_price, unit_weight_kg) VALUES (?, ?, ?, ?, ?)',
                 [orderId, row.productId, row.quantity, price, weightKg]
             );
-
+            if (stockQty < row.quantity) {
+                const err = new Error(`Not enough stock for product ID ${row.productId}. Available: ${stockQty}, requested: ${row.quantity}`);
+                err.statusCode = 400;
+                throw err;
+            }
             await conn.query('UPDATE products SET stock_qty = stock_qty - ? WHERE product_id = ?', [row.quantity, row.productId]);
         }
 
